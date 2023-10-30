@@ -9,7 +9,9 @@ class MathFunction {
 	constructor(text: string, prev?: MathFunction) {
 		// set defaults
 		this.rawText = text
-		this.functionText = '0'
+		this.functionText = prev
+			? prev.functionText
+			: '0'
 		this.function = prev
 			? prev.function
 			: (_i: number) => 0
