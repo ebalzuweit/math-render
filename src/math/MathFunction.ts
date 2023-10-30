@@ -12,7 +12,7 @@ class MathFunction {
 		this.functionText = '0'
 		this.function = prev
 			? prev.function
-			: (i: number) => 0
+			: (_i: number) => 0
 		// try parse
 		if (this.trySetFunctionFromRawText()) {
 			this.functionText = text
@@ -42,7 +42,7 @@ class MathFunction {
 			// Handle constants
 			const n = this.isTokenNumber(token)
 			if (n !== undefined) {
-				stack.push((i: number) => n)
+				stack.push((_i: number) => n)
 				continue
 			}
 
