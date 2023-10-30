@@ -51,6 +51,7 @@ const App: React.FC = () => {
             <LabeledInput
               label='x:'
               input={xFunc.rawText}
+              isValid={xFunc.rawText === xFunc.functionText}
               onChange={(e) => {
                 const fct = new MathFunction(e.target.value, xFunc)
                 setXFunc(fct)
@@ -59,6 +60,7 @@ const App: React.FC = () => {
             <LabeledInput
               label='y:'
               input={yFunc.rawText}
+              isValid={yFunc.rawText === yFunc.functionText}
               onChange={(e) => {
                 const fct = new MathFunction(e.target.value, yFunc)
                 setYFunc(fct)
@@ -67,6 +69,7 @@ const App: React.FC = () => {
             <LabeledInput
               label='z:'
               input={zFunc.rawText}
+              isValid={zFunc.rawText === zFunc.functionText}
               onChange={(e) => {
                 const fct = new MathFunction(e.target.value, zFunc)
                 setZFunc(fct)

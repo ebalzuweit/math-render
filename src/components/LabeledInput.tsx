@@ -25,8 +25,9 @@ interface LabeledInputProps {
 	label: string
 	input: string
 	onChange: React.ChangeEventHandler<HTMLInputElement>
+	isValid: boolean
 }
-const LabeledInput: React.FC<LabeledInputProps> = ({ label, input, onChange }: LabeledInputProps) => {
+const LabeledInput: React.FC<LabeledInputProps> = ({ label, input, onChange, isValid = true }: LabeledInputProps) => {
 	return (
 		<Label>
 			{label}
@@ -34,6 +35,9 @@ const LabeledInput: React.FC<LabeledInputProps> = ({ label, input, onChange }: L
 				type='text'
 				value={input}
 				onChange={onChange}
+				style={{
+					background: isValid ? 'transparent' : '#deabab'
+				}}
 			/>
 		</Label>
 	)
