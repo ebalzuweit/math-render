@@ -26,6 +26,7 @@ const App: React.FC = () => {
           <OrbitControls
             minDistance={1}
             maxDistance={100}
+            enableDamping={false}
           />
           <color attach="background" args={['#dedede']} />
           <group>
