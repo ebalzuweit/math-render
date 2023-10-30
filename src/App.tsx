@@ -15,6 +15,8 @@ import MathFunction from './math/MathFunction'
 
 
 const App: React.FC = () => {
+  const [xFunc, setXFunc] = useState(new MathFunction('i 10 / cos'))
+  const [yFunc, setYFunc] = useState(new MathFunction('i 10 / sin'))
   const [zFunc, setZFunc] = useState(new MathFunction('0'))
 
   return (
@@ -31,8 +33,8 @@ const App: React.FC = () => {
           <color attach="background" args={['#dedede']} />
           <group>
             <IterativeFunctionRender
-              xFct={(i: number) => Math.cos(i / 10)}
-              yFct={(i: number) => Math.sin(i / 10)}
+              xFct={xFunc.function}
+              yFct={yFunc.function}
               zFct={zFunc.function}
             />
           </group>
@@ -48,23 +50,26 @@ const App: React.FC = () => {
           <BorderedContainer>
             <LabeledInput
               label='x:'
-              input='i 10 / cos'
+              input={xFunc.rawText}
               onChange={(e) => {
-                console.log('Updating x function')
+                const fct = new MathFunction(e.target.value, xFunc)
+                setXFunc(fct)
               }}
             />
             <LabeledInput
               label='y:'
-              input='i 10 / sin'
+              input={yFunc.rawText}
               onChange={(e) => {
-                console.log('Updating y function')
+                const fct = new MathFunction(e.target.value, yFunc)
+                setYFunc(fct)
               }}
             />
             <LabeledInput
               label='z:'
               input={zFunc.rawText}
               onChange={(e) => {
-                setZFunc(new MathFunction(e.target.value, zFunc))
+                const fct = new MathFunction(e.target.value, zFunc)
+                setZFunc(fct)
               }}
             />
           </BorderedContainer>
