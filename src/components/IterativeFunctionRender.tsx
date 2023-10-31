@@ -12,7 +12,8 @@ export interface IterativeFunctionProps {
 const IterativeFunctionRender: React.FC<IterativeFunctionProps> = ({ xFct, yFct, zFct, iterations = 10_000 }: IterativeFunctionProps) => {
 	const points = useMemo(() => {
 		const points = []
-		for (let i = 0; i < iterations; i++) {
+		const halfIterations = iterations / 2
+		for (let i = -halfIterations; i < halfIterations; i++) {
 			const point = new Vector3(xFct(i), yFct(i), zFct(i))
 			points.push(point)
 		}
