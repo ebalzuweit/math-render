@@ -12,12 +12,16 @@ import {
   BottomCenter
 } from './styles/styles'
 import MathFunction from './math/MathFunction'
+import IterativeFunction from './math/IterativeFunction'
+import IterativeFunctionControls from './components/IterativeFunctionControls'
 
 
 const App: React.FC = () => {
-  const [xFunc, setXFunc] = useState(new MathFunction('i 10 / cos'))
-  const [yFunc, setYFunc] = useState(new MathFunction('i 10 / sin'))
-  const [zFunc, setZFunc] = useState(new MathFunction('0'))
+  const [func, setFunc] = useState(new IterativeFunction(
+    new MathFunction('i 10 / cos'),
+    new MathFunction('i 10 / sin'),
+    new MathFunction('0')
+  ))
 
   return (
     <>
@@ -33,9 +37,8 @@ const App: React.FC = () => {
           <color attach="background" args={['#dedede']} />
           <group>
             <IterativeFunctionRender
-              xFct={xFunc.function}
-              yFct={yFunc.function}
-              zFct={zFunc.function}
+              func={func}
+              color="black"
             />
           </group>
         </Canvas>
@@ -47,35 +50,11 @@ const App: React.FC = () => {
         </TopLeft>
 
         <BottomCenter>
-          <BorderedContainer>
-            <LabeledInput
-              label='x:'
-              input={xFunc.rawText}
-              isValid={xFunc.rawText === xFunc.functionText}
-              onChange={(e) => {
-                const fct = new MathFunction(e.target.value, xFunc)
-                setXFunc(fct)
-              }}
-            />
-            <LabeledInput
-              label='y:'
-              input={yFunc.rawText}
-              isValid={yFunc.rawText === yFunc.functionText}
-              onChange={(e) => {
-                const fct = new MathFunction(e.target.value, yFunc)
-                setYFunc(fct)
-              }}
-            />
-            <LabeledInput
-              label='z:'
-              input={zFunc.rawText}
-              isValid={zFunc.rawText === zFunc.functionText}
-              onChange={(e) => {
-                const fct = new MathFunction(e.target.value, zFunc)
-                setZFunc(fct)
-              }}
-            />
-          </BorderedContainer>
+          <IterativeFunctionControls
+            func={func}
+            onFuncChange={setFunc}
+            color="black"
+          />
         </BottomCenter>
       </ThreeCanvasContainer>
     </>
