@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { Canvas } from '@react-three/fiber'
 import { OrbitControls } from '@react-three/drei'
-import LabeledInput from './components/LabeledInput'
 import IterativeFunctionRender from './components/IterativeFunctionRender'
 import GlobalStyle from './styles/global'
 import {
