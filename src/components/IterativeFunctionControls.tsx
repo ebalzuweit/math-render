@@ -1,6 +1,6 @@
+import { Fragment } from "react"
 import IterativeFunction from "../math/IterativeFunction"
 import MathFunction from "../math/MathFunction"
-import { BorderedContainer } from "../styles/styles"
 import LabeledInput from "./LabeledInput"
 
 interface IterativeFunctionControlsProps {
@@ -10,11 +10,10 @@ interface IterativeFunctionControlsProps {
 }
 const IterativeFunctionControls: React.FC<IterativeFunctionControlsProps> = ({
 	func,
-	onFuncChange,
-	color
+	onFuncChange
 }: IterativeFunctionControlsProps) => {
 	return (
-		<BorderedContainer style={{ borderColor: color }}>
+		<Fragment>
 			<LabeledInput
 				label="x:"
 				input={func.x.rawText}
@@ -57,7 +56,7 @@ const IterativeFunctionControls: React.FC<IterativeFunctionControlsProps> = ({
 					onFuncChange(iFct)
 				}}
 			/>
-		</BorderedContainer>
+		</Fragment>
 	)
 }
 export default IterativeFunctionControls

@@ -30,9 +30,9 @@ export const TopLeft = styled.div`
 	left: 5vw;
 `
 
-export const BottomCenter = styled.div`
+export const BottomRight = styled.div`
 	position: absolute;
 	bottom: 5vw;
-	left: 10vw;
+	right: 5vw;
 	margin: auto;
 `

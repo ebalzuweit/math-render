@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { Fragment, useState } from 'react'
 import { Canvas } from '@react-three/fiber'
 import { OrbitControls } from '@react-three/drei'
 import IterativeFunctionRender from './components/IterativeFunctionRender'
@@ -8,19 +8,56 @@ import {
   ThreeCanvasContainer,
   Title,
   TopLeft,
-  BottomCenter
+  BottomRight
 } from './styles/styles'
 import MathFunction from './math/MathFunction'
 import IterativeFunction from './math/IterativeFunction'
 import IterativeFunctionControls from './components/IterativeFunctionControls'
+import { v4 as uuid } from 'uuid'
+import { Circle, Wings } from './math/IterativeFunctionExamples'
 
 
 const App: React.FC = () => {
-  const [func, setFunc] = useState(new IterativeFunction(
-    new MathFunction('i 10 / cos'),
-    new MathFunction('i 10 / sin'),
-    new MathFunction('0')
-  ))
+  const [funcList, setFuncList] = useState([
+    {
+      key: uuid(),
+      func: Wings()
+    }
+  ])
+
+  const renders = funcList.map((func) => {
+    return (
+      <Fragment key={func.key}>
+        <IterativeFunctionRender
+          func={func.func}
+          color="black"
+        />
+      </Fragment>
+    )
+  })
+  const controls = funcList.map((func) => {
+    return (
+      <li key={func.key}>
+        <IterativeFunctionControls
+          func={func.func}
+          onFuncChange={(updatedFunction) => {
+            const newFuncList = funcList.map((f) => {
+              if (f.key === func.key) {
+                return {
+                  key: f.key,
+                  func: updatedFunction
+                }
+              } else {
+                return f
+              }
+            })
+            setFuncList(newFuncList)
+          }}
+          color="black"
+        />
+      </li>
+    )
+  })
 
   return (
     <>
@@ -35,10 +72,7 @@ const App: React.FC = () => {
           />
           <color attach="background" args={['#dedede']} />
           <group>
-            <IterativeFunctionRender
-              func={func}
-              color="black"
-            />
+            {renders}
           </group>
         </Canvas>
 
@@ -48,13 +82,25 @@ const App: React.FC = () => {
           </BorderedContainer>
         </TopLeft>
 
-        <BottomCenter>
-          <IterativeFunctionControls
-            func={func}
-            onFuncChange={setFunc}
-            color="black"
-          />
-        </BottomCenter>
+        <BottomRight>
+          <ul style={{ listStyleType: 'none' }}>
+            {controls}
+            <li key='add_button'>
+              <button
+                title='Add a new function'
+                onClick={() => {
+                  const newFuncList = funcList.concat({
+                    key: uuid(),
+                    func: Circle()
+                  })
+                  setFuncList(newFuncList)
+                }}
+              >
+                Add
+              </button>
+            </li>
+          </ul>
+        </BottomRight>
       </ThreeCanvasContainer>
     </>
   )
