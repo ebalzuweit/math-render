@@ -1,7 +1,7 @@
 import React, { Fragment, useState } from 'react'
 import { Canvas } from '@react-three/fiber'
 import { OrbitControls } from '@react-three/drei'
-import IterativeFunctionRender from './components/IterativeFunctionRender'
+import IterativeFunctionRender from './components/threejs/IterativeFunctionRender'
 import GlobalStyle from './styles/global'
 import {
   BorderedContainer,

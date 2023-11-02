@@ -1,6 +1,6 @@
 import { useMemo } from 'react'
 import { Line } from '@react-three/drei'
-import IterativeFunction from '../math/IterativeFunction'
+import IterativeFunction from '../../math/IterativeFunction'
 
 export interface IterativeFunctionProps {
 	func: IterativeFunction
