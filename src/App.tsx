@@ -10,8 +10,6 @@ import {
   TopLeft,
   BottomRight
 } from './styles/styles'
-import MathFunction from './math/MathFunction'
-import IterativeFunction from './math/IterativeFunction'
 import IterativeFunctionControls from './components/IterativeFunctionControls'
 import { v4 as uuid } from 'uuid'
 import { Circle, Wings } from './math/IterativeFunctionExamples'
