@@ -46,6 +46,18 @@ const FunctionSketchpad: React.FC = () => {
 					color="black"
 				/>
 				<button
+					title='Copy this function'
+					onClick={() => {
+						const newFuncList = funcList.concat({
+							key: v4(),
+							func: func.func
+						})
+						setFuncList(newFuncList)
+					}}
+				>
+					Copy
+				</button>
+				<button
 					title='Remove this function'
 					onClick={() => {
 						const newFuncList = funcList.filter((f) => f.key !== func.key)
