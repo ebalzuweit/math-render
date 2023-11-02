@@ -1,7 +1,7 @@
 import React, { Fragment, useState } from 'react'
 import { Canvas } from '@react-three/fiber'
 import { OrbitControls } from '@react-three/drei'
-import IterativeFunctionRender from './components/threejs/IterativeFunctionRender'
+import IterativeFunctionLine from './components/threejs/IterativeFunctionLine'
 import GlobalStyle from './styles/global'
 import {
   BorderedContainer,
@@ -26,7 +26,7 @@ const App: React.FC = () => {
   const renders = funcList.map((func) => {
     return (
       <Fragment key={func.key}>
-        <IterativeFunctionRender
+        <IterativeFunctionLine
           func={func.func}
           color="black"
         />

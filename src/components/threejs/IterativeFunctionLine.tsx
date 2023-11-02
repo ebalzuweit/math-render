@@ -2,20 +2,20 @@ import { useMemo } from 'react'
 import { Line } from '@react-three/drei'
 import IterativeFunction from '../../math/IterativeFunction'
 
-export interface IterativeFunctionProps {
+export interface IterativeFunctionLineProps {
 	func: IterativeFunction
 	color?: string
 	from?: number
 	to?: number
 	step_size?: number
 }
-const IterativeFunctionRender: React.FC<IterativeFunctionProps> = ({
+const IterativeFunctionLine: React.FC<IterativeFunctionLineProps> = ({
 	func,
 	color = "black",
 	from = -5_000,
 	to = 5_000,
 	step_size = 0.1
-}: IterativeFunctionProps) => {
+}: IterativeFunctionLineProps) => {
 	const points = useMemo(() => {
 		const points = []
 		for (let i = from; i < to; i += step_size) {
@@ -33,4 +33,4 @@ const IterativeFunctionRender: React.FC<IterativeFunctionProps> = ({
 		/>
 	)
 }
-export default IterativeFunctionRender
+export default IterativeFunctionLine
