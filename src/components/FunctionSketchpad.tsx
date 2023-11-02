@@ -45,6 +45,15 @@ const FunctionSketchpad: React.FC = () => {
 					}}
 					color="black"
 				/>
+				<button
+					title='Remove this function'
+					onClick={() => {
+						const newFuncList = funcList.filter((f) => f.key !== func.key)
+						setFuncList(newFuncList)
+					}}
+				>
+					Remove
+				</button>
 			</li>
 		)
 	})
