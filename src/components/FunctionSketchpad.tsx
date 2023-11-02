@@ -2,16 +2,23 @@ import { OrbitControls } from "@react-three/drei"
 import { Canvas } from "@react-three/fiber"
 import { Fragment, useState } from "react"
 import { v4 } from "uuid"
+import IterativeFunction from "../math/IterativeFunction"
 import { Circle, Wings } from "../math/IterativeFunctionExamples"
 import { BottomRight, ThreeCanvasContainer } from "../styles/styles"
 import IterativeFunctionControls from "./IterativeFunctionControls"
 import IterativeFunctionLine from "./threejs/IterativeFunctionLine"
 
+interface IterativeFunctionListItem {
+	key: string
+	func: IterativeFunction
+	color: string
+}
 const FunctionSketchpad: React.FC = () => {
-	const [funcList, setFuncList] = useState([
+	const [funcList, setFuncList] = useState<IterativeFunctionListItem[]>([
 		{
 			key: v4(),
-			func: Wings()
+			func: Wings(),
+			color: '#000000'
 		}
 	])
 
@@ -20,7 +27,7 @@ const FunctionSketchpad: React.FC = () => {
 			<Fragment key={func.key}>
 				<IterativeFunctionLine
 					func={func.func}
-					color="black"
+					color={func.color}
 				/>
 			</Fragment>
 		)
@@ -30,12 +37,14 @@ const FunctionSketchpad: React.FC = () => {
 			<li key={func.key}>
 				<IterativeFunctionControls
 					func={func.func}
+					color={func.color}
 					onFuncChange={(updatedFunction) => {
 						const newFuncList = funcList.map((f) => {
 							if (f.key === func.key) {
 								return {
 									key: f.key,
-									func: updatedFunction
+									func: updatedFunction,
+									color: f.color
 								}
 							} else {
 								return f
@@ -43,7 +52,20 @@ const FunctionSketchpad: React.FC = () => {
 						})
 						setFuncList(newFuncList)
 					}}
-					color="black"
+					onColorChange={(color) => {
+						const newFuncList = funcList.map((f) => {
+							if (f.key === func.key) {
+								return {
+									key: f.key,
+									func: f.func,
+									color: color
+								}
+							} else {
+								return f
+							}
+						})
+						setFuncList(newFuncList)
+					}}
 				/>
 				<button
 					title='Copy this function'
@@ -51,7 +73,8 @@ const FunctionSketchpad: React.FC = () => {
 					onClick={() => {
 						const newFuncList = funcList.concat({
 							key: v4(),
-							func: func.func
+							func: func.func,
+							color: func.color
 						})
 						setFuncList(newFuncList)
 					}}
@@ -97,7 +120,8 @@ const FunctionSketchpad: React.FC = () => {
 							onClick={() => {
 								const newFuncList = funcList.concat({
 									key: v4(),
-									func: Circle()
+									func: Circle(),
+									color: '#000000'
 								})
 								setFuncList(newFuncList)
 							}}

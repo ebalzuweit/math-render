@@ -7,10 +7,13 @@ interface IterativeFunctionControlsProps {
 	func: IterativeFunction
 	onFuncChange: (func: IterativeFunction) => void
 	color: string
+	onColorChange: (color: string) => void
 }
 const IterativeFunctionControls: React.FC<IterativeFunctionControlsProps> = ({
 	func,
-	onFuncChange
+	onFuncChange,
+	color,
+	onColorChange
 }: IterativeFunctionControlsProps) => {
 	return (
 		<Fragment>
@@ -54,6 +57,13 @@ const IterativeFunctionControls: React.FC<IterativeFunctionControlsProps> = ({
 						fct
 					)
 					onFuncChange(iFct)
+				}}
+			/>
+			<input
+				type='color'
+				value={color}
+				onChange={(e) => {
+					onColorChange(e.target.value)
 				}}
 			/>
 		</Fragment>
