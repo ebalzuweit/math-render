@@ -1,5 +1,5 @@
-import { useMemo } from 'react'
 import { Line } from '@react-three/drei'
+import { useMemo } from 'react'
 import IterativeFunction from '../../math/IterativeFunction'
 
 export interface IterativeFunctionLineProps {

@@ -1,18 +1,18 @@
-import React, { Fragment, useState } from 'react'
-import { Canvas } from '@react-three/fiber'
 import { OrbitControls } from '@react-three/drei'
+import { Canvas } from '@react-three/fiber'
+import React, { Fragment, useState } from 'react'
+import { v4 as uuid } from 'uuid'
+import IterativeFunctionControls from './components/IterativeFunctionControls'
 import IterativeFunctionLine from './components/threejs/IterativeFunctionLine'
+import { Circle, Wings } from './math/IterativeFunctionExamples'
 import GlobalStyle from './styles/global'
 import {
   BorderedContainer,
+  BottomRight,
   ThreeCanvasContainer,
   Title,
-  TopLeft,
-  BottomRight
+  TopLeft
 } from './styles/styles'
-import IterativeFunctionControls from './components/IterativeFunctionControls'
-import { v4 as uuid } from 'uuid'
-import { Circle, Wings } from './math/IterativeFunctionExamples'
 
 
 const App: React.FC = () => {
