@@ -47,6 +47,7 @@ const FunctionSketchpad: React.FC = () => {
 				/>
 				<button
 					title='Copy this function'
+					type='button'
 					onClick={() => {
 						const newFuncList = funcList.concat({
 							key: v4(),
@@ -59,6 +60,7 @@ const FunctionSketchpad: React.FC = () => {
 				</button>
 				<button
 					title='Remove this function'
+					type='button'
 					onClick={() => {
 						const newFuncList = funcList.filter((f) => f.key !== func.key)
 						setFuncList(newFuncList)
@@ -91,6 +93,7 @@ const FunctionSketchpad: React.FC = () => {
 					<li key='add_button'>
 						<button
 							title='Add a new function'
+							type='button'
 							onClick={() => {
 								const newFuncList = funcList.concat({
 									key: v4(),
